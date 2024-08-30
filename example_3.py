@@ -1,43 +1,48 @@
 class CipherMaster:
     alphabet = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
-    # ciper_text: list = []
-
-    def __init__(self) -> None:
-        # self.ciper_text = []
-        pass
-
     def cipher(self, original_text, shift: int):
         # Метод должен возвращать зашифрованный текст
         # с учетом переданного смещения shift.
-        ciper_text = []
+        ciper_out = []
 
-        for i in range(len(list(original_text))):
-            if str.lower(original_text[i]) in (' ', ',', '!', '?', '.'):
-                ciper_text.append(original_text[i])
+        for i in range(len(original_text)):
+            if str.lower(original_text[i]) not in (self.alphabet):
+                ciper_out.append(original_text[i])
             else:
-                cip_idx = int(self.alphabet.find(
-                    str.lower(original_text[i]))) + shift
-                if cip_idx >= 32:
-                    cip_idx = cip_idx - 32
-                else:
-                    cip_idx = cip_idx
-            ciper_text.append(self.alphabet[cip_idx])
-        return (''.join(ciper_text))
+                cip_idx = self.alphabet.find(str.lower(original_text[i]))
+                cip_shifted = cip_idx + shift
+                if cip_shifted > 32:
+                    cip_shifted -= 33
+                ciper_out.append(self.alphabet[cip_shifted])
 
-#        print(self.ciper_text)
+        return (''.join(ciper_out))
 
     def decipher(self, cipher_text, shift):
+        orig_out = []
+        # plain_text_idx = shift
+        for i in range(len(cipher_text)):
+            if str.lower(cipher_text[i]) not in (self.alphabet):
+                orig_out.append(cipher_text[i])
+            else:
+                cip_idx = self.alphabet.find(str.lower(cipher_text[i]))
+                cip_shifted = cip_idx + shift
+                if cip_shifted > 32:
+                    cip_shifted -= 33
+ 
+                orig_out.append(self.alphabet[cip_shifted])
+        return (''.join(orig_out))
         # с учётом переданного смещения shift.
         ...
 
 
 cipher_master = CipherMaster()
+#сткънр тждюа д ъкцтрдвппро дкёж. мвижфуб, пву твуумтэнк!
 print(cipher_master.cipher(
     original_text='Однажды ревьюер принял проект с первого раза, с тех пор я его боюсь',
-    # original_text='ЯЯЯЯЯ',
     shift=2
 ))
 print(cipher_master.decipher(
-    cipher_text='Олебэи яфвнэ мроплж сэжи — э пэй рдв злййвкпш лп нвящывнэ',
-    shift=-3
+    cipher_text='Уфмьпт фиёав ё ьмшфтёдсстр ёмзи. Одкицхг, сдх фдххофяпм!',
+    # cipher_text='абвгдеёжзийклмнопрстуфхцчшщъыьэюя',
+    shift=4
 ))
