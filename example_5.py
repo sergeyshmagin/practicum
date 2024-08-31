@@ -25,7 +25,10 @@ class FullTimeEmployee(Employee):
         # super().__init__(gender)
 
     def get_unpaid_vacation(self, start_date: str, days: int):
-        return (f'Начало неоплачиваемого отпуска: {start_date}, продолжительность: {days} дней.')
+        return (
+            f'Начало неоплачиваемого отпуска: {start_date},'
+            f' продолжительность: {days} дней.'
+            )
 
 
 class PartTimeEmployee(Employee):

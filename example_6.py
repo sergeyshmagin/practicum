@@ -6,7 +6,11 @@ class Employee:
         self.second_name = second_name
         self.gender = gender
         self.remaining_vacation_days = Employee.vacation_days
-        self._employee_id = self.__generate_employee_id(self.first_name, self.second_name, self.gender)
+        self._employee_id = self.__generate_employee_id(
+            self.first_name,
+            self.second_name,
+            self.gender
+        )
 
     def __generate_employee_id(self, first_name, second_name, gender):
         return (hash(first_name + second_name + gender))
@@ -22,13 +26,16 @@ class FullTimeEmployee(Employee):
 
     def __init__(self, first_name, second_name, gender, salary):
         super().__init__(first_name, second_name, gender)
-        self.__salary = salary 
-    
+        self.__salary = salary
+
     def __get_vacation_salary(self):
         return (self.__salary * 0.8)
 
     def get_unpaid_vacation(self, start_date, days):
-        return f'Начало неоплачиваемого отпуска: {start_date}, продолжительность: {days} дней.'
+        return (
+            f'Начало неоплачиваемого отпуска: {start_date},'
+            f' продолжительность: {days} дней.'
+        )
 
 
 class PartTimeEmployee(Employee):
