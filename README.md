@@ -1,2 +1,0 @@
-# practicum
-Yandex Practicum repo
